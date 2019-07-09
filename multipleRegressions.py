@@ -1,4 +1,5 @@
 def runRegression(y,x,data, cov_type='HC0'):
+    print("Covariance type: %s" %cov_type )
     form = '{0} ~ {1}'.format(y,x)
     mod = smf.ols(formula=form, data=data)
     res = mod.fit(cov_type=cov_type)
@@ -49,4 +50,4 @@ def runRegressions(y, xList, key_vars, data, specification_names=None):
         
     outdf =pd.DataFrame(outDict).transpose()
     outdf.index.name='specification'
-    return(outdf)    
+    return(outdf)  
