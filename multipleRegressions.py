@@ -1,3 +1,7 @@
+# needed to estimate statistical models
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+
 def runRegression(y,x,data, cov_type='HC0'):
     print("Covariance type: %s" %cov_type )
     form = '{0} ~ {1}'.format(y,x)
