@@ -24,8 +24,8 @@ def runRegressions(y, xList, key_vars, data, specification_names=None, cov_type=
     specification_names - list of regression names (list of strings)
     
     Description: runRegressions estimates multiple regression specifications
-    and returns coefficent estimate for key_vars, p-value, and other stats for each
-    specification in a single table. 
+    and returns coefficent and p-values estimates for key_vars and regressions
+    stats for each specification in a single table. 
     """
     # if no custom names are given, use numbers
     if specification_names is None:
@@ -54,4 +54,4 @@ def runRegressions(y, xList, key_vars, data, specification_names=None, cov_type=
         
     outdf =pd.DataFrame(outDict).transpose()
     outdf.index.name='specification'
-    return(outdf)  
+    return(outdf)   
