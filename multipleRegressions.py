@@ -40,13 +40,12 @@ def runRegressions(y, xList, key_vars, data, specification_names=None):
     print("Extracting results")
     outDict = {}    
     for key in regDict.keys():
-        cont = regDict[key]
-        inc = 'HINCP'
-        mills = 'invMills'
-        numObs = 'numObs'
-        outDict[key] = {'nObs':cont.nobs,'R^2 adj':cont.rsquared_adj.round(3), 'cond. num':cont.condition_number}
+        # get regression statistics
+        outDict[key] = {'nObs':regDict[key].nobs,'R^2 adj':regDict[key].rsquared_adj.round(3), 'cond. num':regDict[key].condition_number}
+        
+        # loop over variables of interest
         for var in key_vars:
-            outDict[key][var] = "%.04f (%.03f)" %(cont.params[var], cont.pvalues[var])
+            outDict[key][var] = "%.04f (%.03f)" %(regDict[key].params[var], regDict[key].pvalues[var])
         
     outdf =pd.DataFrame(outDict).transpose()
     outdf.index.name='specification'
