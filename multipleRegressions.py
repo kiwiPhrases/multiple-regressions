@@ -1,4 +1,4 @@
-# needed to estimate statistical models
+import pandas as pd
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
 
@@ -15,7 +15,7 @@ def runQuantRegression(y,x,data,quant=.5):
     res = mod.fit(quant=.5)
     return(res)
 
-def runRegressions(y, xList, key_vars, data, specification_names=None):
+def runRegressions(y, xList, key_vars, data, specification_names=None, cov_type='HC0'):
     """
     y - dependent variable (string)
     xList - list of explanatory variable strings (list of Patsy compatible formulas)
@@ -38,7 +38,7 @@ def runRegressions(y, xList, key_vars, data, specification_names=None):
     regDict = {}
     for x, name in zip(xList, specification_names):
         print("Estimating specification: %s" %name)
-        regDict[name] = runRegression(y,x,data)
+        regDict[name] = runRegression(y,x,data, cov_type='HC0')
     print("Estimation done")   
     
     # extract estimates:
