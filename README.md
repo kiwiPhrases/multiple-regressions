@@ -1,2 +1,2 @@
 # multiple-regressions
-Multiple regressions in Python with Pandas and Statsmodels
+Code for estimating and reporting results from multiple regressions in Python with Pandas and Statsmodels
